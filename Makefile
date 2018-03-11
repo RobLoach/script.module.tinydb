@@ -17,3 +17,7 @@ deploy:
 	rm -rf repo-scripts
 	git clone --branch=krypton https://github.com/xbmc/repo-scripts.git
 	rm -rf repo-scripts/script.module.tinydb
+	git archive HEAD | gzip > archive.tar.gz
+	tar xf archive.tar.gz -C repo-scripts/script.module.tinydb
+	cd repo-scripts && git status
+	@echo "Review changes and push them up as a Pull Request at repo-scripts"
