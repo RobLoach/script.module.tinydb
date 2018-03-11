@@ -1,2 +1,4 @@
-*.pyo
-repo-scripts
+/*.pyo
+/repo-scripts
+/lib/*
+!/lib/tinydb

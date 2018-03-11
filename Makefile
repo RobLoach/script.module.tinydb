@@ -12,7 +12,6 @@ update:
 	rm -rf lib
 	git clone --branch=$(VERSION) https://github.com/msiemens/tinydb.git lib
 	mv lib/LICENSE lib/tinydb
-	rm -rf lib/.git lib/artwork lib/docs lib/tests lib/Pipfile lib/*.*
 
 deploy:
 	rm -rf repo-scripts
