@@ -6,18 +6,22 @@
 # 2. Run `make`
 #
 
+NAME = script.module.tinydb
 VERSION = v3.8.0
+KODIBRANCH = krypton
 
 update:
 	rm -rf lib
 	git clone --branch=$(VERSION) https://github.com/msiemens/tinydb.git lib
 	mv lib/LICENSE lib/tinydb
 
-deploy:
-	rm -rf repo-scripts
-	git clone --branch=krypton https://github.com/xbmc/repo-scripts.git
-	rm -rf repo-scripts/script.module.tinydb
-	git archive HEAD | gzip > archive.tar.gz
-	tar xf archive.tar.gz -C repo-scripts/script.module.tinydb
+repo-scripts:
+	git clone --branch=$(KODIBRANCH) https://github.com/xbmc/repo-scripts.git
+
+deploy: repo-scripts
+	rm -rf repo-scripts/$(NAME)
+	git archive HEAD | gzip > $(NAME).tar.gz
+	mkdir repo-scripts/$(NAME)
+	tar xf $(NAME).tar.gz -C repo-scripts/$(NAME)
 	cd repo-scripts && git status
 	@echo "Review changes and push them up as a Pull Request at repo-scripts"
